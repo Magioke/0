@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Magioke</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff69b4, #8a2be2);
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .logo {
+      position: fixed;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 220px;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .menu {
+      background: white;
+      padding: 40px 60px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+
+    .menu h1 {
+      margin: 0 0 20px;
+      font-size: 36px;
+      color: #333;
+    }
+
+    .menu button {
+      display: block;
+      width: 220px;
+      margin: 15px auto;
+      padding: 18px 0;
+      font-size: 20px;
+      border: none;
+      border-radius: 12px;
+      background: #8a2be2;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .menu button:hover {
+      background: #6a1fb5;
+    }
+
+    /* --- Loading Overlay Styles --- */
+    #loading-overlay {
+      position: fixed;
+      z-index: 9999;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: linear-gradient(135deg, #b806ff, #ff1fb4 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity .3s;
+    }
+    #loading-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #loading-logo {
+      max-width: 48vw;
+      width: 220px;
+      min-width: 120px;
+      filter: drop-shadow(0 4px 24px rgba(0,0,0,0.18));
+      user-drag: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+      margin-bottom: 38px;
+    }
+    .spinner-wrap {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .circle-spinner {
+      width: 60px;
+      height: 60px;
+      display: block;
+      animation: rotateSpinner 1s linear infinite;
+      transform-origin: 50% 50%;
+    }
+    @keyframes rotateSpinner {
+      100% { transform: rotate(360deg);}
+    }
+    @media (max-width: 600px) {
+      #loading-logo {
+        max-width: 70vw;
+        width: 120px;
+        min-width: 60px;
+        margin-bottom: 25px;
+      }
+      .spinner-wrap, .circle-spinner {
+        width: 36px;
+        height: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Loading Overlay -->
+<div id="loading-overlay">
+  <img id="loading-logo" src="https://magioke.github.io/0/fa7d9e2c-3c1fadb2-bce4fde9-cafe8abe-dc3defab/logo/texticon_1.png" alt="Magioke Logo" draggable="false">
+  <div class="spinner-wrap">
+    <svg class="circle-spinner" viewBox="0 0 50 50">
+      <circle
+        cx="25"
+        cy="25"
+        r="20"
+        fill="none"
+        stroke="#fff"
+        stroke-width="5"
+        stroke-linecap="round"
+        stroke-dasharray="94 40"
+      />
+    </svg>
+  </div>
+</div>
+
+<img class="logo" src="https://magioke.github.io/0/fa7d9e2c-3c1fadb2-bce4fde9-cafe8abe-dc3defab/logo/texticon_1.png" alt="Magioke Logo">
+
+<div class="menu">
+  <h1>Select Mode</h1>
+  <button onclick="window.location.href='https://magioke.github.io/0/fa7d9e2c-3c1fadb2-bce4fde9-cafe8abe-dc3defab/ls/tv/high_graphics'">HIGH GRAPHICS</button>
+  <button onclick="window.location.href='https://magioke.github.io/0/fa7d9e2c-3c1fadb2-bce4fde9-cafe8abe-dc3defab/ls/tv/low_graphics'">LOW GRAPHICS</button>
+</div>
+
+<script>
+  // Make the loading overlay a bit longer: 1700ms minimum
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var loader = document.getElementById('loading-overlay');
+      loader.classList.add('hidden');
+      setTimeout(function(){
+        loader.style.display = 'none';
+      }, 350);
+    }, 1700); // Show loading for at least 1700ms
+  });
+</script>
+
+</body>
+</html>
